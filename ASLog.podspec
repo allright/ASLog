@@ -9,7 +9,8 @@ Pod::Spec.new do |s|
   s.author       = { "Andrey Syvrachev" => "andrey.syvrachev@gmail.com" }
 
   s.platform     = :ios, "10.0"
-  s.source       = { :git => 'https://github.com/allright/ASLog.git' }
-  s.source_files  = "**/*.swift"
+  s.source       = { :git => 'https://github.com/allright/ASLog.git' ,:tag => '1.0' }
+  s.source_files = "**/*.swift"
+  s.license      = "LICENSE" 
 
 end
