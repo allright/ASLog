@@ -9,7 +9,7 @@
 import Foundation
 
 public class ASLog: NSObject {
-    public enum LogLevel: Int, Comparable {
+    public enum Level: Int, Comparable {
         case VBS
         case DBG
         case INF
@@ -18,15 +18,15 @@ public class ASLog: NSObject {
         case SVR
 
         // Implement Comparable
-        public static func < (a: LogLevel, b: LogLevel) -> Bool {
+        public static func < (a: Level, b: Level) -> Bool {
             return a.rawValue < b.rawValue
         }
     }
     
     public static var filterTags:[String]?
-    public static var logLevel:LogLevel = .DBG
+    public static var logLevel:Level = .DBG
 
-    public static func log(_ level:LogLevel, tag:@autoclosure () -> String, _ format: @autoclosure () -> String) {
+    public static func log(_ level:Level, tag:@autoclosure () -> String, _ format: @autoclosure () -> String) {
         guard logLevel <= level else { return }
         logv(level, tag:tag, format)
     }
@@ -57,7 +57,7 @@ public class ASLog: NSObject {
 }
 
 extension ASLog {
-    static fileprivate func logv(_ level:LogLevel, tag:@autoclosure () -> String, _ format: @autoclosure () -> String){
+    static fileprivate func logv(_ level:Level, tag:@autoclosure () -> String, _ format: @autoclosure () -> String){
         let tg = tag()
         guard acceptTag(tg) else { return }
 
