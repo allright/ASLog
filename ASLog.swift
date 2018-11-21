@@ -114,9 +114,9 @@ extension ASLog {
         static public var tag:Formatter?
         
         static fileprivate func apply(formatter:Formatter?,str:String) -> String {
-            guard let f = formatter else { return str }
-            let s = f(str)
-            return s.count > 0 ? " [\(s)]" : ""
+            func wrap(_ s:String) -> String { return s.count > 0 ? " [\(s)]" : "" }
+            guard let f = formatter else { return wrap(str) }
+            return wrap(f(str))
         }
     }
 }
